@@ -28,13 +28,6 @@ help those who wants to develop their site in sass, jade or other language
 instead of plain HTML and CSS. So apparently you can develop scripts and
 styles in the `src` folder and have `gulp` to build the files for you.
 
-When you first create the project, you should run this:
-
-    npm run build
-
-You should run this every time if you change the files without the
-development server started
-
 
 Development
 -----------
