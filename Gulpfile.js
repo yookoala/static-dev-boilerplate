@@ -36,6 +36,9 @@ gulp.task('watch', function() {
   watch('./src/styles/**/*.sass', function () {
     gulp.run('styles');
   });
+  watch('./src/styles/**/*.scss', function () {
+    gulp.run('styles');
+  });
   watch('./src/**/*.jade', function () {
     gulp.run('templates');
   });
@@ -51,6 +54,13 @@ gulp.task('styles', function() {
         .pipe(sass({
           errLogToConsole: true
         }))
+        .pipe(minifyCss({
+          compatibility: 'ie8'
+        }))
+        .pipe(gulp.dest('./public/styles/'));
+
+    gulp.src('./src/styles/*.scss')
+        .pipe(sass())
         .pipe(minifyCss({
           compatibility: 'ie8'
         }))
