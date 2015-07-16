@@ -69,7 +69,10 @@ gulp.task('styles', function() {
 
 // convert html
 gulp.task('templates', function() {
-    gulp.src('./src/**/*.jade')
+    gulp.src([
+          './src/**/*.jade',
+          '!./src/includes/**/*.jade'
+        ])
         .pipe(jade({
           locals: {}
         }))
