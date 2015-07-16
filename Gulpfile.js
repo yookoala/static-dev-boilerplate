@@ -33,10 +33,10 @@ gulp.task('serve-dev', function() {
 // generates public files
 gulp.task('watch', function() {
 
-  watch('./src/styles/**/*.sass', function () {
-    gulp.run('styles');
-  });
-  watch('./src/styles/**/*.scss', function () {
+  watch([
+    './src/styles/**/*.sass',
+    './src/styles/**/*.scss'
+  ], function () {
     gulp.run('styles');
   });
   watch('./src/**/*.jade', function () {
