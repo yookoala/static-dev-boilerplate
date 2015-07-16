@@ -1,4 +1,6 @@
 
+var webpack = require('webpack');
+
 // loaders to use for different file type
 var loaders = [
   {
@@ -25,6 +27,10 @@ var externals =  {
   'react': 'React'
 }
 
+var plugins = [
+  new webpack.optimize.UglifyJsPlugin({minimize: true})
+];
+
 module.exports = [
   {
     name: "browser",
@@ -34,6 +40,7 @@ module.exports = [
       loaders: loaders
     },
     externals: externals,
+    plugins: plugins,
     resolve: {
       extensions: ['', '.js', '.jsx'],
       alias: {
