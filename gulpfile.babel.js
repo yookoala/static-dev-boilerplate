@@ -1,15 +1,18 @@
+'use strict';
 
 // basic
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var webpack = require('webpack');
+import gulp from 'gulp';
+import browserSync from 'browser-sync';
+import webpack from 'webpack';
 
 // gulp plugins
-var gutil = require("gulp-util");
-var watch = require('gulp-watch');
-var jade = require('gulp-jade');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
+import gutil from 'gulp-util';
+import jade from 'gulp-jade';
+import sass from 'gulp-sass';
+import minifyCss from 'gulp-minify-css';
+
+// webpack config
+import webpackCfg from './configs/webpack.babel.config';
 
 // watch the public files
 // hot reload if there is changes
@@ -32,20 +35,12 @@ gulp.task('serve-dev', function() {
 // watch the source files
 // generates public files
 gulp.task('watch', function() {
-
-  watch([
+  gulp.watch([
     './src/styles/**/*.sass',
     './src/styles/**/*.scss'
-  ], function () {
-    gulp.run('styles');
-  });
-  watch('./src/**/*.jade', function () {
-    gulp.run('templates');
-  });
-  watch('./src/scripts/**/*.*', function () {
-    gulp.run('webpack');
-  });
-
+  ], ['styles']);
+  gulp.watch('./src/**/*.jade', ['templates']);
+  gulp.watch('./src/scripts/**/*.*', ['webpack']);
 });
 
 // convert styles
@@ -81,9 +76,6 @@ gulp.task('templates', function() {
 
 // bundle scripts
 gulp.task("webpack", function(callback) {
-
-  var webpackCfg = require('./webpack.config');
-
   // run webpack
   webpack(webpackCfg, function(err, stats) {
     if(err) throw new gutil.PluginError("webpack", err);
