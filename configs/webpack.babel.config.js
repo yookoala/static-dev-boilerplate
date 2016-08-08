@@ -17,6 +17,8 @@ var loaders = [
 var externals =  {
   // use React and ReactDOM from external source (do not bundle)
   'react': 'React',
+  'redux': 'Redux',
+  'react-redux': 'ReactRedux',
   'react-dom': 'ReactDOM',
 
   // use jquery from external source (do not bundle)
